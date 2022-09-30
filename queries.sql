@@ -26,7 +26,7 @@ WHERE name LIKE '%mon';
 -- Update species column to pokemon for all animals without species.
 UPDATE animals
 SET species = 'pokemon'
-WHERE species = '';
+WHERE species IS NULL;
 COMMIT;
 -- Verify that change was made and persists after commit.
 SELECT * FROM animals;
