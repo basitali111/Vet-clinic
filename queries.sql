@@ -19,3 +19,14 @@ SET species = 'unspecified';
 SELECT * FROM animals;
 ROLLBACK;
 SELECT * FROM animals;
+
+UPDATE animals
+SET species = 'digimon'
+WHERE name LIKE '%mon';
+-- Update species column to pokemon for all animals without species.
+UPDATE animals
+SET species = 'pokemon'
+WHERE species = '';
+COMMIT;
+-- Verify that change was made and persists after commit.
+SELECT * FROM animals;
