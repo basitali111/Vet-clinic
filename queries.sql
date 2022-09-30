@@ -9,4 +9,13 @@
  SELECT * FROM animals WHERE name != 'Gabumon';
  SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
-  
+  -- 2nd task
+
+-- part 1
+BEGIN;
+-- try rolback
+UPDATE animals
+SET species = 'unspecified';
+SELECT * FROM animals;
+ROLLBACK;
+SELECT * FROM animals;
