@@ -30,3 +30,27 @@ WHERE species IS NULL;
 COMMIT;
 -- Verify that change was made and persists after commit.
 SELECT * FROM animals;
+
+-- part 2
+BEGIN;
+DELETE FROM animals;
+ROLLBACK
+SELECT * FROM animals;
+
+-- part 3
+BEGIN;
+DELETE FROM animals
+WHERE date_of_birth > 'Jan 1, 2022';
+
+SAVEPOINT deletion;
+
+UPDATE animals 
+SET weight_kg = weight_kg * -1;
+ROLLBACK TO deletion;
+
+UPDATE animals 
+SET weight_kg = weight_kg * -1
+WHERE weight_kg < 0;
+
+COMMIT;
+SELECT * FROM animals;
