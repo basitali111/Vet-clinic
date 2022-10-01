@@ -113,13 +113,13 @@ JOIN species ON animals.species_id = species.id
 JOIN owners ON animals.owner_id = owners.id
 ORDER BY visits.visit_date DESC LIMIT 1;
 
-SELECT COUNT(visits.animal_id) FROM visits JOIN animals 
-ON animals.id = visits.animal_id
-JOIN vets ON vets.id = visits.vet_id
-WHERE animals.species_id NOT IN (
-    SELECT species_id FROM specializations 
-    WHERE vet_id = vets.id
-    );
+-- How many visits were with a vet that did not specialize in that animal's species?
+SELECT vets.name, COUNT(visits.animals_id) FROM visits
+JOIN vets ON vets.id = visits.vets_id
+JOIN animals ON animals.id = visits.animals_id
+JOIN specializations ON specializations.species_id = vets.id
+WHERE specializations.species_id != animals.species_id
+GROUP BY vets.name;
 
 SELECT species.name, COUNT(animals.species_id) FROM visits
 JOIN animals ON animals.id = visits.animal_id
