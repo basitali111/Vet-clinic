@@ -32,3 +32,51 @@ INSERT INTO species (name)
 VALUES ('Pokemon');
 INSERT INTO species (name)
 VALUES ('Digimon');
+
+
+-- Update species column to digimon for all animals that name ends in "mon".
+UPDATE animals
+SET species_id = 1
+WHERE name LIKE '%mon';
+-- Update species column to pokemon for all animals without species.
+UPDATE animals
+SET species_id = 2
+WHERE name NOT LIKE '%mon';
+
+
+-- Update owners column with given values.
+-- Sam Smith owns Agumon.
+UPDATE animals
+SET owner_id = 1
+WHERE name = 'Agumon';
+-- Jennifer Orwell owns Gabumon and Pikachu.
+UPDATE animals
+SET owner_id = 2
+WHERE name = 'Gabumon';
+UPDATE animals
+SET owner_id = 2
+WHERE name = 'Pikachu';
+-- Bob owns Devimon and Plantmon.
+UPDATE animals
+SET owner_id = 3
+WHERE name = 'Devimon';
+UPDATE animals
+SET owner_id = 3
+WHERE name = 'Plantmon';
+-- Melody Pond owns Charmander, Squirtle, and Blossom.
+UPDATE animals
+SET owner_id = 4
+WHERE name = 'Charmander';
+UPDATE animals
+SET owner_id = 4
+WHERE name = 'Squirtle';
+UPDATE animals
+SET owner_id = 4
+WHERE name = 'Blossom';
+-- Dean Winchester owns Angemon and Boarmon.
+UPDATE animals
+SET owner_id = 5
+WHERE name = 'Angemon';
+UPDATE animals
+SET owner_id = 5
+WHERE name = 'Boarmon';
